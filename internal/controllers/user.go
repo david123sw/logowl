@@ -31,6 +31,9 @@ func (u *UserControllers) Get(c *gin.Context) {
 	}
 
 	if !userDetails.IsOrganizationOwner {
+		if userDetails.Organization == nil {
+			userDetails.Organization = &models.Organization{}
+		}
 		userDetails.Organization.SubscriptionID = ""
 	}
 
